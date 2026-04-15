@@ -1,0 +1,59 @@
+<section class="checkout-shell">
+  <div class="checkout-head">
+    <span class="small-label">оформление заказа</span>
+    <h1>Заполните данные для доставки</h1>
+    <p>
+      Введите имя, телефон и адрес. После подтверждения заказ сохраняется в базе и уходит в Telegram.
+    </p>
+  </div>
+
+  <div class="checkout-grid">
+    <form #orderForm="ngForm" (ngSubmit)="submit(orderForm)" class="checkout-form">
+      <label>
+        Имя
+        <input type="text" [(ngModel)]="name" name="name" required />
+      </label>
+      <label>
+        Телефон
+        <input type="tel" [(ngModel)]="phone" name="phone" required />
+      </label>
+      <label>
+        Адрес доставки
+        <textarea rows="5" [(ngModel)]="address" name="address" required></textarea>
+      </label>
+      <button
+        type="submit"
+        class="button"
+        [disabled]="busy() || !cartService.itemsWithProduct().length"
+      >
+        {{ busy() ? 'Отправка...' : 'Отправить заказ' }}
+      </button>
+
+      @if (submitted()) {
+        <div class="success-message">{{ message() }}</div>
+      }
+      @if (!submitted() && message()) {
+        <div class="error-message">{{ message() }}</div>
+      }
+    </form>
+
+    <aside class="order-summary">
+      <div class="summary-box">
+        <span>Состав заказа</span>
+        <strong>{{ cartService.totalQuantity() }} товар{{ cartService.totalQuantity() === 1 ? '' : 'а' }}</strong>
+      </div>
+      <ul class="summary-list">
+        @for (item of cartService.itemsWithProduct(); track item.productId) {
+          <li>
+            <span>{{ item.product.name }}</span>
+            <strong>€{{ item.product.price * item.quantity }}</strong>
+          </li>
+        }
+      </ul>
+      <div class="summary-total">
+        <span>Общая сумма</span>
+        <strong>€{{ cartService.totalPrice() }}</strong>
+      </div>
+    </aside>
+  </div>
+</section>

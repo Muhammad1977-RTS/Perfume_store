@@ -1,0 +1,61 @@
+<section class="admin-shell">
+  <div class="admin-head">
+    <div>
+      <span class="small-label">административная панель</span>
+      <h1>Управление каталогом</h1>
+      <p>
+        Добавляйте, редактируйте и удаляйте товары. Удалённые позиции навсегда удаляются из PostgreSQL.
+      </p>
+    </div>
+  </div>
+
+  <div class="admin-columns">
+    <form class="admin-form" (ngSubmit)="save()">
+      <div class="field-group">
+        <label>Название</label>
+        <input type="text" [(ngModel)]="name" name="name" required />
+      </div>
+      <div class="field-group">
+        <label>Бренд</label>
+        <input type="text" [(ngModel)]="brand" name="brand" required />
+      </div>
+      <div class="field-group">
+        <label>Цена (€)</label>
+        <input type="number" [(ngModel)]="price" name="price" min="1" required />
+      </div>
+      <div class="field-group">
+        <label>Описание</label>
+        <textarea rows="4" [(ngModel)]="description" name="description" required></textarea>
+      </div>
+      <div class="field-group">
+        <label>Ссылка на изображение</label>
+        <input type="url" [(ngModel)]="imageUrl" name="imageUrl" required />
+      </div>
+      <div class="buttons">
+        <button type="submit" class="button" [disabled]="saving()">
+          {{ saving() ? 'Сохранение…' : (selectedProduct() ? 'Обновить товар' : 'Добавить товар') }}
+        </button>
+        <button type="button" class="ghost" (click)="reset()">Очистить</button>
+      </div>
+    </form>
+
+    <div class="product-list">
+      <div class="list-header">
+        <span>Список товаров</span>
+        <span>{{ loading ? 'загрузка…' : products.length + ' позиций' }}</span>
+      </div>
+      @for (product of products; track product.id) {
+        <div class="product-row">
+          <div>
+            <strong>{{ product.name }}</strong>
+            <p>{{ product.brand }} — €{{ product.price }}</p>
+          </div>
+          <div class="row-actions">
+            <button type="button" (click)="edit(product)">Ред.</button>
+            <button type="button" class="danger" (click)="delete(product.id)">Удалить</button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

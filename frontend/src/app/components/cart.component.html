@@ -1,0 +1,54 @@
+<section class="cart-shell">
+  <div class="cart-head">
+    <span class="small-label">корзина</span>
+    <h1>Ваши выбранные ароматы</h1>
+    <p>Изменяйте количество, удаляйте товары и переходите к оформлению заказа.</p>
+  </div>
+
+  @if (cartService.itemsWithProduct().length) {
+    <div class="cart-grid">
+      <div class="cart-list">
+        @for (item of cartService.itemsWithProduct(); track item.productId) {
+          <div class="cart-item">
+            <img [src]="item.product.imageUrl" [alt]="item.product.name" />
+            <div class="item-body">
+              <strong>{{ item.product.name }}</strong>
+              <span>{{ item.product.brand }}</span>
+              <p>€{{ item.product.price }} × {{ item.quantity }}</p>
+              <div class="quantity">
+                <button type="button" (click)="changeQuantity(item.productId, item.quantity - 1)">-</button>
+                <input
+                  type="number"
+                  [value]="item.quantity"
+                  min="1"
+                  (change)="changeQuantity(item.productId, $any($event.target).valueAsNumber)"
+                />
+                <button type="button" (click)="changeQuantity(item.productId, item.quantity + 1)">+</button>
+              </div>
+            </div>
+            <button type="button" class="remove" (click)="cartService.remove(item.productId)">
+              Удалить
+            </button>
+          </div>
+        }
+      </div>
+
+      <aside class="summary-card">
+        <div class="summary-header">
+          <span>Итого</span>
+          <strong>€{{ cartService.totalPrice() }}</strong>
+        </div>
+        <p>
+          В корзине {{ cartService.totalQuantity() }} товар{{ cartService.totalQuantity() === 1 ? '' : 'а' }}.
+        </p>
+        <a routerLink="/checkout" class="checkout-button">Оформить заказ</a>
+      </aside>
+    </div>
+  } @else {
+    <div class="empty-state">
+      <h2>Корзина пуста</h2>
+      <p>Добавьте аромат из каталога и возвращайтесь сюда для оформления.</p>
+      <a routerLink="/" class="hero-button">Перейти в каталог</a>
+    </div>
+  }
+</section>

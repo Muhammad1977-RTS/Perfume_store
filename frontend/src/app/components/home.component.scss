@@ -1,0 +1,156 @@
+:host {
+  display: block;
+  padding: 0;
+}
+
+.hero-section {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.96) 0%, rgba(12, 12, 12, 0.92) 100%);
+  padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 4vw, 5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hero-copy {
+  max-width: 760px;
+  color: #fff;
+}
+
+.label-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.label {
+  display: inline-flex;
+  margin-bottom: 0;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.82);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(3rem, 6vw, 5.25rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: #fff;
+}
+
+.hero-copy p {
+  max-width: 770px;
+  margin: 1.75rem 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.hero-button,
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 170px;
+  padding: 1rem 1.5rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.hero-button {
+  background: #fff;
+  color: #111;
+}
+
+.hero-link {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.filters {
+  padding: clamp(2rem, 3vw, 3rem) clamp(1.5rem, 4vw, 5rem);
+}
+
+.filters-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.clear-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.brand-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.brand-chip {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.84);
+  padding: 0.85rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.brand-chip.active {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: #E8C96A;
+}
+
+.catalog {
+  padding: clamp(2rem, 3vw, 4rem) clamp(1.5rem, 4vw, 5rem);
+}
+
+.catalog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.catalog-header h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+.catalog-header span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 760px) {
+  .hero-actions {
+    flex-direction: column;
+  }
+}

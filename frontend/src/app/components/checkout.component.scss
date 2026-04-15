@@ -1,0 +1,136 @@
+:host {
+  display: block;
+  padding: clamp(2rem, 4vw, 4rem) clamp(1.5rem, 4vw, 5rem);
+}
+
+.checkout-head {
+  margin-bottom: 2rem;
+}
+
+.small-label {
+  display: inline-flex;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+h1 {
+  margin: 1rem 0 0;
+  color: #fff;
+  font-size: clamp(2.25rem, 4vw, 3rem);
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 1fr);
+  gap: 1.5rem;
+}
+
+.checkout-form {
+  display: grid;
+  gap: 1rem;
+  padding: 2.375rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.checkout-form label {
+  display: grid;
+  gap: 0.7rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  padding: 0.88rem 1.15rem;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.button {
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  color: #111;
+  padding: 1rem 1.35rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.success-message {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 18px;
+  background: rgba(60, 206, 179, 0.16);
+  color: #b9ffea;
+}
+
+.error-message {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 18px;
+  background: rgba(245, 66, 93, 0.14);
+  color: #ffb0c7;
+}
+
+.order-summary {
+  display: grid;
+  gap: 1rem;
+}
+
+.summary-box,
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.95rem 1.2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.summary-box span,
+.summary-total span {
+  color: rgba(255, 255, 255, 0.72);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.summary-box strong,
+.summary-total strong {
+  color: #fff;
+}
+
+.summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.summary-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+@media (max-width: 900px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+}

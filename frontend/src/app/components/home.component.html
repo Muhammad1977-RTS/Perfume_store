@@ -1,0 +1,51 @@
+<section class="hero-section">
+  <div class="hero-copy">
+    <div class="label-row">
+      <span class="label">Премиальный мужской парфюм</span>
+      <span class="label">Выбери свой аромат</span>
+    </div>
+    <h1>Luxury fragrance studio</h1>
+  </div>
+</section>
+
+<section class="filters">
+  <div class="filters-heading">
+  </div>
+  <div class="brand-list">
+    <button
+      type="button"
+      class="brand-chip"
+      [class.active]="!selectedBrand()"
+      (click)="selectBrand(null)"
+    >
+      Все бренды
+    </button>
+    @for (brand of brands; track brand) {
+      <button
+        type="button"
+        class="brand-chip"
+        [class.active]="selectedBrand() === brand"
+        (click)="selectBrand(brand)"
+      >
+        {{ brand }}
+      </button>
+    }
+  </div>
+</section>
+
+<section class="catalog">
+  <div class="catalog-header">
+    <h2>Каталог мужского парфюма</h2>
+    @if (loading()) {
+      <span class="loading-hint">Загрузка…</span>
+    } @else {
+      <span>{{ filteredProducts().length }} товара</span>
+    }
+  </div>
+
+  <div class="product-grid">
+    @for (product of filteredProducts(); track product.id) {
+      <app-product-card [product]="product" (addToCart)="addToCart($event)" />
+    }
+  </div>
+</section>

@@ -1,0 +1,137 @@
+:host {
+  display: block;
+  padding: clamp(2rem, 4vw, 4rem) clamp(1.5rem, 4vw, 5rem);
+}
+
+.admin-head {
+  margin-bottom: 2rem;
+}
+
+.small-label {
+  display: inline-flex;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+h1 {
+  margin: 1rem 0 0;
+  color: #fff;
+  font-size: clamp(2.25rem, 4vw, 3rem);
+}
+
+.admin-columns {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 2rem;
+}
+
+.admin-form,
+.product-list {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 1.75rem;
+}
+
+.field-group {
+  display: grid;
+  gap: 0.65rem;
+  margin-bottom: 1.2rem;
+}
+
+.field-group label {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.92rem;
+}
+
+.field-group input,
+.field-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  border-radius: 16px;
+  padding: 1rem 1.15rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.button,
+.ghost {
+  border: none;
+  border-radius: 999px;
+  padding: 0.95rem 1.35rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.button {
+  background: #fff;
+  color: #111;
+}
+
+.ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.product-list .list-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 1rem;
+}
+
+.product-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.product-row:first-child {
+  border-top: none;
+}
+
+.product-row p {
+  margin: 0.35rem 0 0;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.row-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.row-actions button {
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.row-actions .danger {
+  background: rgba(245, 66, 93, 0.14);
+  color: #ff8da1;
+}
+
+@media (max-width: 900px) {
+  .admin-columns {
+    grid-template-columns: 1fr;
+  }
+}

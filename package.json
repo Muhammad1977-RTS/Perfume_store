@@ -1,0 +1,17 @@
+{
+  "name": "perfume-store",
+  "version": "1.0.0",
+  "description": "Fullstack perfume store — run both frontend and backend",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "npm run dev --prefix backend",
+    "start:frontend": "npm start --prefix frontend",
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "db:init": "npm run --prefix backend db:init",
+    "db:seed": "npm run --prefix backend db:seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
