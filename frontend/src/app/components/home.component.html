@@ -44,8 +44,32 @@
   </div>
 
   <div class="product-grid">
-    @for (product of filteredProducts(); track product.id) {
+    @for (product of pagedProducts(); track product.id) {
       <app-product-card [product]="product" (addToCart)="addToCart($event)" />
     }
   </div>
+
+  @if (totalPages() > 1) {
+    <nav class="pagination">
+      <button
+        class="page-btn page-btn--arrow"
+        [disabled]="currentPage() === 1"
+        (click)="goToPage(currentPage() - 1)"
+      >&#8592;</button>
+
+      @for (page of pages(); track page) {
+        <button
+          class="page-btn"
+          [class.active]="page === currentPage()"
+          (click)="goToPage(page)"
+        >{{ page }}</button>
+      }
+
+      <button
+        class="page-btn page-btn--arrow"
+        [disabled]="currentPage() === totalPages()"
+        (click)="goToPage(currentPage() + 1)"
+      >&#8594;</button>
+    </nav>
+  }
 </section>
