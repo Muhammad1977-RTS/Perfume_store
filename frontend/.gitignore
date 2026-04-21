@@ -42,3 +42,26 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+*.webm
+*.zip
+/e2e/screenshots/
+/e2e/videos/
+
+# Node modules (all levels)
+node_modules/
+backend/node_modules/
+
+# Environment
+backend/.env
+.env
+
+# Playwright
+e2e/test-results/
+e2e/playwright-report/
+playwright-report/
+test-results/

@@ -1,0 +1,38 @@
+<section class="auth-shell">
+  <div class="auth-card">
+    <span class="small-label">{{ mode() === 'login' ? 'вход' : 'регистрация' }}</span>
+    <h1>{{ mode() === 'login' ? 'Войти в аккаунт' : 'Создать аккаунт' }}</h1>
+
+    <div class="auth-form">
+      @if (mode() === 'register') {
+        <label>
+          Имя
+          <input type="text" [(ngModel)]="name" placeholder="Ваше имя" />
+        </label>
+      }
+      <label>
+        Email
+        <input type="email" [(ngModel)]="email" placeholder="example@mail.com" />
+      </label>
+      <label>
+        Пароль
+        <input type="password" [(ngModel)]="password" placeholder="Минимум 6 символов" />
+      </label>
+
+      @if (error()) {
+        <div class="error-message">{{ error() }}</div>
+      }
+
+      <button class="button" (click)="submit()" [disabled]="busy()">
+        {{ busy() ? 'Загрузка...' : (mode() === 'login' ? 'Войти' : 'Зарегистрироваться') }}
+      </button>
+
+      <p class="toggle-link">
+        {{ mode() === 'login' ? 'Нет аккаунта?' : 'Уже есть аккаунт?' }}
+        <button class="link-btn" (click)="toggle()">
+          {{ mode() === 'login' ? 'Зарегистрироваться' : 'Войти' }}
+        </button>
+      </p>
+    </div>
+  </div>
+</section>

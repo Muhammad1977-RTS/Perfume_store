@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
 
 @Component({
@@ -11,5 +12,12 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./site-header.component.scss'],
 })
 export class SiteHeaderComponent {
-  constructor(public cartService: CartService) {}
+  readonly cartService = inject(CartService);
+  readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/');
+  }
 }

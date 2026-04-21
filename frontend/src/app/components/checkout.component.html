@@ -3,12 +3,24 @@
     <span class="small-label">оформление заказа</span>
     <h1>Заполните данные для доставки</h1>
     <p>
-      Введите имя, телефон и адрес. После подтверждения заказ сохраняется в базе и уходит в Telegram.
+      @if (authService.isLoggedIn()) {
+        Вы вошли как <strong>{{ authService.user()?.email }}</strong>.
+      } @else {
+        Введите email, чтобы получить историю заказов.
+      }
     </p>
   </div>
 
   <div class="checkout-grid">
     <form #orderForm="ngForm" (ngSubmit)="submit(orderForm)" class="checkout-form">
+
+      @if (!authService.isLoggedIn()) {
+        <label>
+          Email (необязательно)
+          <input type="email" [(ngModel)]="guestEmail" name="guestEmail" />
+        </label>
+      }
+
       <label>
         Имя
         <input type="text" [(ngModel)]="name" name="name" required />
@@ -57,3 +69,32 @@
     </aside>
   </div>
 </section>
+
+<!-- Предложение зарегистрироваться после гостевого заказа -->
+@if (showRegisterPrompt()) {
+  <div class="register-prompt-overlay">
+    <div class="register-prompt">
+      <h2>Сохранить данные?</h2>
+      <p>Создайте аккаунт, чтобы отслеживать заказы и ускорить следующую покупку.</p>
+
+      @if (!regDone()) {
+        <label>
+          Придумайте пароль
+          <input type="password" [(ngModel)]="regPassword" name="regPassword" minlength="6" />
+        </label>
+        @if (regMessage()) {
+          <div class="error-message">{{ regMessage() }}</div>
+        }
+        <div class="prompt-actions">
+          <button class="button" (click)="registerAfterOrder()" [disabled]="regBusy()">
+            {{ regBusy() ? 'Создаём...' : 'Создать аккаунт' }}
+          </button>
+          <button class="button button--ghost" (click)="dismissRegisterPrompt()">Нет, спасибо</button>
+        </div>
+      } @else {
+        <div class="success-message">{{ regMessage() }}</div>
+        <button class="button button--ghost" (click)="dismissRegisterPrompt()">Закрыть</button>
+      }
+    </div>
+  </div>
+}

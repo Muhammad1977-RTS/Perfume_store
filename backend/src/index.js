@@ -4,6 +4,7 @@ const cors     = require('cors');
 
 const productsRouter = require('./routes/products');
 const ordersRouter   = require('./routes/orders');
+const authRouter     = require('./routes/auth');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
@@ -15,6 +16,7 @@ app.use(express.json());
 // ── Routes ───────────────────────────────────────────────────────────────────
 app.use('/api/products', productsRouter);
 app.use('/api/orders',   ordersRouter);
+app.use('/api/auth',     authRouter);
 
 app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
 

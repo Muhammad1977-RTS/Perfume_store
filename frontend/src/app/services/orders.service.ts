@@ -1,26 +1,35 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order } from '../models/order.model';
+import { AuthService } from './auth.service';
 
 const API = '/api/orders';
 
 @Injectable({ providedIn: 'root' })
 export class OrdersService {
-  private readonly http = inject(HttpClient);
+  private readonly http        = inject(HttpClient);
+  private readonly authService = inject(AuthService);
 
-  /**
-   * POST /api/orders
-   * The backend saves the order to PostgreSQL and sends a Telegram notification.
-   */
-  create(order: Omit<Order, 'status'>): Observable<Order> {
-    return this.http.post<Order>(API, {
-      id:           order.id,
-      customerName: order.name,
-      phone:        order.phone,
-      address:      order.address,
-      items:        order.items,
-      totalPrice:   order.total,
-    });
+  create(order: Omit<Order, 'status'>, guestEmail?: string): Observable<Order> {
+    const headers = new HttpHeaders(this.authService.getAuthHeaders());
+    return this.http.post<Order>(
+      API,
+      {
+        id:           order.id,
+        customerName: order.name,
+        phone:        order.phone,
+        address:      order.address,
+        items:        order.items,
+        totalPrice:   order.total,
+        guestEmail:   guestEmail ?? null,
+      },
+      { headers },
+    );
+  }
+
+  getMyOrders(): Observable<Order[]> {
+    const headers = new HttpHeaders(this.authService.getAuthHeaders());
+    return this.http.get<Order[]>(`${API}/my`, { headers });
   }
 }

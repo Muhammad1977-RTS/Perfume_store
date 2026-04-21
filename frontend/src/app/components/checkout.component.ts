@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Order } from '../models/order.model';
 import { CartService } from '../services/cart.service';
 import { OrdersService } from '../services/orders.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,25 +15,31 @@ import { OrdersService } from '../services/orders.service';
   styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent {
-  name    = '';
-  phone   = '';
-  address = '';
+  readonly cartService  = inject(CartService);
+  private readonly ordersService = inject(OrdersService);
+  readonly authService  = inject(AuthService);
 
-  readonly submitted = signal(false);
-  readonly busy      = signal(false);
-  readonly message   = signal('');
+  name       = '';
+  phone      = '';
+  address    = '';
+  guestEmail = '';
 
-  constructor(
-    public  readonly cartService:  CartService,
-    private readonly ordersService: OrdersService,
-  ) {}
+  readonly submitted        = signal(false);
+  readonly busy             = signal(false);
+  readonly message          = signal('');
+  readonly showRegisterPrompt = signal(false);
+
+  // Registration form (shown after guest order)
+  regPassword = '';
+  regBusy     = signal(false);
+  regMessage  = signal('');
+  regDone     = signal(false);
 
   submit(form: NgForm): void {
     if (form.invalid || !this.cartService.itemsWithProduct().length) return;
 
     this.busy.set(true);
 
-    // Build order with full product details for Telegram & DB history
     const items = this.cartService.itemsWithProduct().map((item) => ({
       productId: item.productId,
       name:      item.product.name,
@@ -51,12 +58,17 @@ export class CheckoutComponent {
       createdAt: new Date().toISOString(),
     };
 
-    this.ordersService.create(order).subscribe({
+    const guestEmail = !this.authService.isLoggedIn() ? this.guestEmail : undefined;
+
+    this.ordersService.create(order, guestEmail).subscribe({
       next: () => {
         this.cartService.clear();
-        this.message.set('Заказ успешно отправлен! Уведомление отправлено в Telegram.');
+        this.message.set('Заказ успешно оформлен! Уведомление отправлено в Telegram.');
         this.submitted.set(true);
         this.busy.set(false);
+        if (!this.authService.isLoggedIn()) {
+          this.showRegisterPrompt.set(true);
+        }
         form.resetForm();
       },
       error: () => {
@@ -64,5 +76,27 @@ export class CheckoutComponent {
         this.busy.set(false);
       },
     });
+  }
+
+  registerAfterOrder(): void {
+    if (!this.guestEmail || !this.regPassword) return;
+    this.regBusy.set(true);
+    this.authService.register(this.guestEmail, this.regPassword, this.name).subscribe({
+      next: () => {
+        this.regMessage.set('Аккаунт создан! Теперь вы можете отслеживать заказы.');
+        this.regDone.set(true);
+        this.regBusy.set(false);
+        this.showRegisterPrompt.set(false);
+      },
+      error: (err) => {
+        const msg = err.error?.error ?? 'Ошибка регистрации';
+        this.regMessage.set(msg);
+        this.regBusy.set(false);
+      },
+    });
+  }
+
+  dismissRegisterPrompt(): void {
+    this.showRegisterPrompt.set(false);
   }
 }
