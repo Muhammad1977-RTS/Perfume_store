@@ -34,13 +34,15 @@
       </div>
 
       <aside class="summary-card">
-        <div class="summary-header">
-          <span>Итого</span>
-          <strong>€{{ cartService.totalPrice() }}</strong>
+        <div class="summary-row">
+          <p>
+            В корзине {{ cartService.totalQuantity() }} товар{{ cartService.totalQuantity() === 1 ? '' : 'а' }}.
+          </p>
+          <div class="summary-header">
+            <span>Итого</span>
+            <strong>€{{ cartService.totalPrice() }}</strong>
+          </div>
         </div>
-        <p>
-          В корзине {{ cartService.totalQuantity() }} товар{{ cartService.totalQuantity() === 1 ? '' : 'а' }}.
-        </p>
         <a routerLink="/checkout" class="checkout-button">Оформить заказ</a>
       </aside>
     </div>

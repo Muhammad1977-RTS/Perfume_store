@@ -107,15 +107,29 @@ h1 {
   display: grid;
   gap: 1rem;
   padding: 1.75rem;
+  justify-items: center;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.summary-header {
+.summary-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.summary-row p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.summary-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
 }
 
 .summary-header span {
@@ -135,7 +149,10 @@ h1 {
   justify-content: center;
   border: none;
   border-radius: 999px;
-  padding: 1rem 1.3rem;
+  width: 200px;
+  height: 90px;
+  align-items: center;
+  padding: 0;
   background: #fff;
   color: #111;
   text-decoration: none;
