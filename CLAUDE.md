@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Important
+
+Read `GOTCHAS.md` before starting work — it contains real mistakes made in this project and how to avoid them. After any session where something went wrong or required a correction, add a new entry to `GOTCHAS.md`.
+
 ## Commands
 
 ### Running the app

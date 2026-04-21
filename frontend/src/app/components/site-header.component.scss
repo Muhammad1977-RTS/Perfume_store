@@ -104,6 +104,17 @@
   white-space: nowrap;
 }
 
+.btn-orders {
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.85rem;
+
+  &:hover { background: rgba(255, 255, 255, 0.16); }
+}
+
 .btn-logout {
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.2);

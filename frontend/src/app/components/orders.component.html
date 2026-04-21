@@ -1,0 +1,47 @@
+<section class="orders-shell">
+  <div class="orders-head">
+    <span class="small-label">история заказов</span>
+    <h1>Мои заказы</h1>
+  </div>
+
+  @if (loading()) {
+    <p class="state-msg">Загрузка...</p>
+  } @else if (error()) {
+    <p class="state-msg error">{{ error() }}</p>
+  } @else if (!orders().length) {
+    <div class="empty-state">
+      <h2>Заказов пока нет</h2>
+      <p>После оформления заказа он появится здесь.</p>
+      <a routerLink="/" class="button">Перейти в каталог</a>
+    </div>
+  } @else {
+    <ul class="orders-list">
+      @for (order of orders(); track order.id) {
+        <li class="order-card">
+          <div class="order-card__head">
+            <div>
+              <span class="order-id">#{{ order.id }}</span>
+              <span class="order-date">{{ formatDate(order.created_at) }}</span>
+            </div>
+            <strong class="order-total">€{{ order.total_price }}</strong>
+          </div>
+
+          <div class="order-card__meta">
+            <span>{{ order.customer_name }}</span>
+            <span>{{ order.phone }}</span>
+            <span>{{ order.address }}</span>
+          </div>
+
+          <ul class="order-items">
+            @for (item of order.items; track item.name) {
+              <li>
+                <span>{{ item.name }} <em>{{ item.brand }}</em> × {{ item.quantity }}</span>
+                <span>€{{ itemTotal(item) }}</span>
+              </li>
+            }
+          </ul>
+        </li>
+      }
+    </ul>
+  }
+</section>

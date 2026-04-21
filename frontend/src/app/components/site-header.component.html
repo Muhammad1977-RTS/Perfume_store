@@ -12,6 +12,7 @@
   <div class="actions">
     @if (authService.isLoggedIn()) {
       <div class="user-menu">
+        <a routerLink="/orders" class="btn-orders">Мои заказы</a>
         <span class="user-name">{{ authService.user()?.name || authService.user()?.email }}</span>
         <button class="btn-logout" (click)="logout()">Выйти</button>
       </div>
