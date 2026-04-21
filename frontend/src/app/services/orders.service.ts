@@ -32,4 +32,14 @@ export class OrdersService {
     const headers = new HttpHeaders(this.authService.getAuthHeaders());
     return this.http.get<Order[]>(`${API}/my`, { headers });
   }
+
+  getAllOrders(): Observable<any[]> {
+    const headers = new HttpHeaders(this.authService.getAuthHeaders());
+    return this.http.get<any[]>(API, { headers });
+  }
+
+  updateStatus(orderId: string, status: string): Observable<any> {
+    const headers = new HttpHeaders(this.authService.getAuthHeaders());
+    return this.http.patch(`${API}/${orderId}/status`, { status }, { headers });
+  }
 }

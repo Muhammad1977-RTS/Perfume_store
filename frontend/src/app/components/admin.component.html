@@ -58,4 +58,33 @@
       }
     </div>
   </div>
+
+  <!-- Заказы -->
+  <div class="admin-orders">
+    <div class="list-header">
+      <span>Заказы</span>
+      <span>{{ ordersLoading() ? 'загрузка…' : orders().length + ' заказов' }}</span>
+    </div>
+    @for (order of orders(); track order.id) {
+      <div class="order-row">
+        <div class="order-row__info">
+          <strong>{{ order.customer_name }}</strong>
+          <span>{{ order.phone }} · {{ formatDate(order.created_at) }}</span>
+          <span class="order-row__address">{{ order.address }}</span>
+        </div>
+        <div class="order-row__right">
+          <span class="order-total">€{{ order.total_price }}</span>
+          <select
+            class="status-select status-select--{{ order.status }}"
+            [value]="order.status"
+            (change)="changeStatus(order, $any($event.target).value)"
+          >
+            @for (s of statuses; track s.value) {
+              <option [value]="s.value">{{ s.label }}</option>
+            }
+          </select>
+        </div>
+      </div>
+    }
+  </div>
 </section>

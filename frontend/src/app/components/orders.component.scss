@@ -75,6 +75,26 @@ h1 {
   gap: 1rem;
 }
 
+.order-card__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+
+  &--pending    { background: rgba(232,201,106,0.15); color: #E8C96A; }
+  &--processing { background: rgba(96,165,250,0.15);  color: #93c5fd; }
+  &--delivered  { background: rgba(60,206,179,0.15);  color: #b9ffea; }
+}
+
 .order-id {
   display: block;
   color: rgba(255, 255, 255, 0.5);

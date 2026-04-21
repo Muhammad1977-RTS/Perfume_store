@@ -10,7 +10,8 @@
     "db:seed": "node db/seed.js",
     "db:clear": "node db/clear.js",
     "db:migrate": "node db/migrate_auth.js",
-    "db:migrate:admin": "node db/migrate_admin.js"
+    "db:migrate:admin": "node db/migrate_admin.js",
+    "db:migrate:status": "node db/migrate_status.js"
   },
   "dependencies": {
     "axios": "^1.6.2",

@@ -12,6 +12,7 @@ interface BackendOrder {
   items: { name: string; brand: string; price: number; quantity: number }[];
   total_price: number;
   created_at: string;
+  status: 'pending' | 'processing' | 'delivered';
 }
 
 @Component({
@@ -51,5 +52,14 @@ export class OrdersComponent implements OnInit {
 
   itemTotal(item: { price: number; quantity: number }): number {
     return item.price * item.quantity;
+  }
+
+  statusLabel(status: string): string {
+    const map: Record<string, string> = {
+      pending:    'Ожидает',
+      processing: 'В обработке',
+      delivered:  'Доставлен',
+    };
+    return map[status] ?? status;
   }
 }

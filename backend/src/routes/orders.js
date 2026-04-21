@@ -3,6 +3,9 @@ const router              = express.Router();
 const db                  = require('../db');
 const { sendOrderToTelegram } = require('../services/telegram');
 const authMiddleware      = require('../middleware/auth');
+const adminMiddleware     = require('../middleware/admin');
+
+const VALID_STATUSES = ['pending', 'processing', 'delivered'];
 
 // POST /api/orders ────────────────────────────────────────────────────────────
 router.post('/', async (req, res) => {
@@ -62,6 +65,41 @@ router.get('/my', authMiddleware, async (req, res) => {
   } catch (err) {
     console.error('GET /orders/my:', err.message);
     res.status(500).json({ error: 'Failed to fetch orders' });
+  }
+});
+
+// GET /api/orders — все заказы (только админ)
+router.get('/', adminMiddleware, async (req, res) => {
+  try {
+    const result = await db.query(
+      'SELECT * FROM orders ORDER BY created_at DESC',
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error('GET /orders:', err.message);
+    res.status(500).json({ error: 'Failed to fetch orders' });
+  }
+});
+
+// PATCH /api/orders/:id/status — сменить статус (только админ)
+router.patch('/:id/status', adminMiddleware, async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  if (!VALID_STATUSES.includes(status)) {
+    return res.status(400).json({ error: `Status must be one of: ${VALID_STATUSES.join(', ')}` });
+  }
+
+  try {
+    const result = await db.query(
+      'UPDATE orders SET status = $1 WHERE id = $2 RETURNING *',
+      [status, id],
+    );
+    if (!result.rows.length) return res.status(404).json({ error: 'Order not found' });
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('PATCH /orders/:id/status:', err.message);
+    res.status(500).json({ error: 'Failed to update status' });
   }
 });
 
