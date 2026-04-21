@@ -1,6 +1,7 @@
-const express = require('express');
-const router  = express.Router();
-const db      = require('../db');
+const express         = require('express');
+const router          = express.Router();
+const db              = require('../db');
+const adminMiddleware = require('../middleware/admin');
 
 // Helpers ────────────────────────────────────────────────────────────────────
 
@@ -37,7 +38,7 @@ router.get('/', async (_req, res) => {
 });
 
 // POST /api/products ──────────────────────────────────────────────────────────
-router.post('/', async (req, res) => {
+router.post('/', adminMiddleware, async (req, res) => {
   const { id, name, brand, price, description, imageUrl } = req.body;
 
   if (!name || !brand || price == null) {
@@ -61,7 +62,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT /api/products/:id ───────────────────────────────────────────────────────
-router.put('/:id', async (req, res) => {
+router.put('/:id', adminMiddleware, async (req, res) => {
   const { id } = req.params;
   const { name, brand, price, description, imageUrl } = req.body;
 
@@ -88,7 +89,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE /api/products/:id ────────────────────────────────────────────────────
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', adminMiddleware, async (req, res) => {
   const { id } = req.params;
   try {
     await db.query('DELETE FROM products WHERE id = $1', [id]);

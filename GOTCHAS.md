@@ -35,6 +35,16 @@
 
 ---
 
+## 5. PostgreSQL snake_case vs JavaScript camelCase
+
+**Что случилось:** добавил `is_admin` в БД и JWT, но фронт проверял `user.isAdmin` — получал `undefined`, ссылка "Админка" не появлялась.
+
+**Почему:** PostgreSQL возвращает колонки в snake_case (`is_admin`), а фронтенд ждёт camelCase (`isAdmin`). Объект из `...safeUser` нёс `is_admin`, а не `isAdmin`.
+
+**Как правильно:** при формировании ответа всегда явно переименовывать snake_case поля в camelCase перед отправкой клиенту. Деструктурировать и пересобирать: `const { is_admin, ...rest } = row; return { ...rest, isAdmin: !!is_admin }`.
+
+---
+
 ## 4. Edit tool не срабатывает если строка не уникальна в файле
 
 **Что случилось:** попытался заменить `font-size: 2rem` в `cart.component.scss`, получил ошибку: *"Found 2 matches... replace_all is false"*.

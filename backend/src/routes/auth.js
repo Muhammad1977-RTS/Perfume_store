@@ -8,7 +8,7 @@ const SALT_ROUNDS = 10;
 
 function signToken(user) {
   return jwt.sign(
-    { id: user.id, email: user.email, name: user.name },
+    { id: user.id, email: user.email, name: user.name, isAdmin: !!user.is_admin },
     process.env.JWT_SECRET,
     { expiresIn: '7d' },
   );
@@ -32,12 +32,13 @@ router.post('/register', async (req, res) => {
 
     const hash = await bcrypt.hash(password, SALT_ROUNDS);
     const result = await db.query(
-      'INSERT INTO users (email, password_hash, name) VALUES ($1, $2, $3) RETURNING id, email, name',
+      'INSERT INTO users (email, password_hash, name) VALUES ($1, $2, $3) RETURNING id, email, name, is_admin',
       [email, hash, name || ''],
     );
 
-    const user = result.rows[0];
-    res.status(201).json({ token: signToken(user), user });
+    const { is_admin, ...rest } = result.rows[0];
+    const user = { ...rest, isAdmin: !!is_admin };
+    res.status(201).json({ token: signToken(result.rows[0]), user });
   } catch (err) {
     console.error('POST /auth/register:', err.message);
     res.status(500).json({ error: 'Registration failed' });
@@ -53,7 +54,7 @@ router.post('/login', async (req, res) => {
 
   try {
     const result = await db.query(
-      'SELECT id, email, name, password_hash FROM users WHERE email = $1',
+      'SELECT id, email, name, is_admin, password_hash FROM users WHERE email = $1',
       [email],
     );
     const user = result.rows[0];
@@ -62,8 +63,9 @@ router.post('/login', async (req, res) => {
     const valid = await bcrypt.compare(password, user.password_hash);
     if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const { password_hash, ...safeUser } = user;
-    res.json({ token: signToken(safeUser), user: safeUser });
+    const { password_hash, is_admin, ...rest } = user;
+    const safeUser = { ...rest, isAdmin: !!is_admin };
+    res.json({ token: signToken(user), user: safeUser });
   } catch (err) {
     console.error('POST /auth/login:', err.message);
     res.status(500).json({ error: 'Login failed' });

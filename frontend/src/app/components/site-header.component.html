@@ -7,7 +7,9 @@
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Каталог</a>
     <a routerLink="/cart" routerLinkActive="active">Корзина</a>
     <a routerLink="/checkout" routerLinkActive="active">Оформление</a>
-    <a routerLink="/admin" routerLinkActive="active">Админка</a>
+    @if (authService.isAdmin()) {
+      <a routerLink="/admin" routerLinkActive="active">Админка</a>
+    }
   </nav>
   <div class="actions">
     @if (authService.isLoggedIn()) {

@@ -6,6 +6,7 @@ export interface AuthUser {
   id: number;
   email: string;
   name: string;
+  isAdmin?: boolean;
 }
 
 interface AuthResponse {
@@ -27,6 +28,7 @@ export class AuthService {
   );
 
   readonly isLoggedIn = computed(() => !!this._token());
+  readonly isAdmin    = computed(() => !!this._user()?.isAdmin);
   readonly user       = computed(() => this._user());
   readonly token      = computed(() => this._token());
 

@@ -1,13 +1,19 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Product } from '../models/product.model';
+import { AuthService } from './auth.service';
 
 const API = '/api/products';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
-  private readonly http = inject(HttpClient);
+  private readonly http        = inject(HttpClient);
+  private readonly authService = inject(AuthService);
+
+  private get adminHeaders() {
+    return { headers: new HttpHeaders(this.authService.getAuthHeaders()) };
+  }
 
   private readonly _products = signal<Product[]>([]);
   readonly loading = signal(false);
@@ -49,17 +55,17 @@ export class ProductsService {
   // ── CRUD ────────────────────────────────────────────────────────────────────
 
   add(product: Omit<Product, 'id'> & { id?: string }): Observable<Product> {
-    return this.http.post<Product>(API, product).pipe(tap(() => this.loadAll()));
+    return this.http.post<Product>(API, product, this.adminHeaders).pipe(tap(() => this.loadAll()));
   }
 
   update(id: string, changes: Partial<Product>): Observable<Product> {
     const current = this.findById(id)!;
     return this.http
-      .put<Product>(`${API}/${id}`, { ...current, ...changes })
+      .put<Product>(`${API}/${id}`, { ...current, ...changes }, this.adminHeaders)
       .pipe(tap(() => this.loadAll()));
   }
 
   remove(id: string): Observable<void> {
-    return this.http.delete<void>(`${API}/${id}`).pipe(tap(() => this.loadAll()));
+    return this.http.delete<void>(`${API}/${id}`, this.adminHeaders).pipe(tap(() => this.loadAll()));
   }
 }
