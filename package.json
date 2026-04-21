@@ -9,9 +9,13 @@
     "start:frontend": "npm start --prefix frontend",
     "install:all": "npm install --prefix backend && npm install --prefix frontend",
     "db:init": "npm run --prefix backend db:init",
-    "db:seed": "npm run --prefix backend db:seed"
+    "db:seed": "npm run --prefix backend db:seed",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "concurrently": "^9.2.1"
   }
 }
