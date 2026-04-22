@@ -4,7 +4,7 @@
       <span class="label">Премиальный мужской парфюм</span>
       <span class="label">Выбери свой аромат</span>
     </div>
-    <h1>Luxury fragrance studio</h1>
+    <h1>Премиальный парфюм для мужчин</h1>
   </div>
 </section>
 
@@ -35,11 +35,11 @@
 
 <section class="catalog">
   <div class="catalog-header">
-    <h2>Каталог мужского парфюма</h2>
+    <h2>Весь каталог</h2>
     @if (loading()) {
       <span class="loading-hint">Загрузка…</span>
     } @else {
-      <span>{{ filteredProducts().length }} товара</span>
+      <span>{{ filteredCountLabel() }}</span>
     }
   </div>
 
@@ -53,6 +53,7 @@
     <nav class="pagination">
       <button
         class="page-btn page-btn--arrow"
+        aria-label="Предыдущая страница"
         [disabled]="currentPage() === 1"
         (click)="goToPage(currentPage() - 1)"
       >&#8592;</button>
@@ -61,12 +62,15 @@
         <button
           class="page-btn"
           [class.active]="page === currentPage()"
+          [attr.aria-label]="'Страница ' + page"
+          [attr.aria-current]="page === currentPage() ? 'page' : null"
           (click)="goToPage(page)"
         >{{ page }}</button>
       }
 
       <button
         class="page-btn page-btn--arrow"
+        aria-label="Следующая страница"
         [disabled]="currentPage() === totalPages()"
         (click)="goToPage(currentPage() + 1)"
       >&#8594;</button>
