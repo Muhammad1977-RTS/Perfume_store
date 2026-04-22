@@ -1,10 +1,10 @@
 <section class="admin-shell">
   <div class="admin-head">
     <div>
-      <span class="small-label">административная панель</span>
+      <span class="small-label">Административная панель</span>
       <h1>Управление каталогом</h1>
       <p>
-        Добавляйте, редактируйте и удаляйте товары. Удалённые позиции навсегда удаляются из PostgreSQL.
+        Управляйте каталогом: добавляйте новые позиции, обновляйте и удаляйте существующие. Удалённые позиции нельзя восстановить.
       </p>
     </div>
   </div>
@@ -35,14 +35,14 @@
         <button type="submit" class="button" [disabled]="saving()">
           {{ saving() ? 'Сохранение…' : (selectedProduct() ? 'Обновить товар' : 'Добавить товар') }}
         </button>
-        <button type="button" class="ghost" (click)="reset()">Очистить</button>
+        <button type="button" class="ghost" (click)="reset()">{{ selectedProduct() ? 'Отмена' : 'Очистить' }}</button>
       </div>
     </form>
 
     <div class="product-list">
       <div class="list-header">
-        <span>Список товаров</span>
-        <span>{{ loading ? 'загрузка…' : products.length + ' позиций' }}</span>
+        <span>Товары</span>
+        <span>{{ loading ? 'Загрузка…' : products.length + ' позиций' }}</span>
       </div>
       @for (product of products; track product.id) {
         <div class="product-row">
@@ -51,7 +51,7 @@
             <p>{{ product.brand }} — €{{ product.price }}</p>
           </div>
           <div class="row-actions">
-            <button type="button" (click)="edit(product)">Ред.</button>
+            <button type="button" (click)="edit(product)">Изменить</button>
             <button type="button" class="danger" (click)="delete(product.id)">Удалить</button>
           </div>
         </div>
@@ -63,7 +63,7 @@
   <div class="admin-orders">
     <div class="list-header">
       <span>Заказы</span>
-      <span>{{ ordersLoading() ? 'загрузка…' : orders().length + ' заказов' }}</span>
+      <span>{{ ordersLoading() ? 'Загрузка…' : ordersCountLabel() }}</span>
     </div>
     @for (order of orders(); track order.id) {
       <div class="order-row">

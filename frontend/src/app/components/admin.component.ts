@@ -82,8 +82,16 @@ export class AdminComponent implements OnInit {
     }
   }
 
+  ordersCountLabel(): string {
+    const n = this.orders().length;
+    const mod10 = n % 10, mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return `${n} заказ`;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return `${n} заказа`;
+    return `${n} заказов`;
+  }
+
   delete(id: string): void {
-    if (!confirm('Удалить товар навсегда из базы данных?')) return;
+    if (!confirm('Удалить товар? Это действие нельзя отменить.')) return;
     this.productsService.remove(id).subscribe({
       next: () => { if (this.selectedProduct()?.id === id) this.reset(); },
     });
