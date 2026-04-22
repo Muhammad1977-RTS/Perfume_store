@@ -1,6 +1,6 @@
 <section class="auth-shell">
   <div class="auth-card">
-    <span class="small-label">{{ mode() === 'login' ? 'вход' : 'регистрация' }}</span>
+    <span class="small-label">{{ mode() === 'login' ? 'Вход' : 'Регистрация' }}</span>
     <h1>{{ mode() === 'login' ? 'Войти в аккаунт' : 'Создать аккаунт' }}</h1>
 
     <div class="auth-form">
@@ -24,13 +24,13 @@
       }
 
       <button class="button" (click)="submit()" [disabled]="busy()">
-        {{ busy() ? 'Загрузка...' : (mode() === 'login' ? 'Войти' : 'Зарегистрироваться') }}
+        {{ busy() ? 'Загрузка…' : (mode() === 'login' ? 'Войти' : 'Зарегистрироваться') }}
       </button>
 
       <p class="toggle-link">
         {{ mode() === 'login' ? 'Нет аккаунта?' : 'Уже есть аккаунт?' }}
         <button class="link-btn" (click)="toggle()">
-          {{ mode() === 'login' ? 'Зарегистрироваться' : 'Войти' }}
+          {{ mode() === 'login' ? 'Создать' : 'Войти' }}
         </button>
       </p>
     </div>

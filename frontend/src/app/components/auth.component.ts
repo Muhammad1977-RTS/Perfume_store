@@ -29,17 +29,25 @@ export class AuthComponent {
 
   submit() {
     if (!this.email || !this.password) return;
+    if (this.password.length < 6) {
+      this.error.set('Пароль должен содержать не менее 6 символов.');
+      return;
+    }
     this.busy.set(true);
     this.error.set('');
 
-    const req = this.mode() === 'login'
+    const isLogin = this.mode() === 'login';
+    const req = isLogin
       ? this.authService.login(this.email, this.password)
       : this.authService.register(this.email, this.password, this.name);
 
     req.subscribe({
       next: () => this.router.navigateByUrl('/'),
       error: (err) => {
-        this.error.set(err.error?.error ?? 'Ошибка. Попробуйте ещё раз.');
+        const fallback = isLogin
+          ? 'Не удалось войти. Проверьте email и пароль.'
+          : 'Не удалось создать аккаунт. Попробуйте ещё раз.';
+        this.error.set(err.error?.error ?? fallback);
         this.busy.set(false);
       },
     });
