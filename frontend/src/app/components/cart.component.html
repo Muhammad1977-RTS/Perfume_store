@@ -1,7 +1,7 @@
 <section class="cart-shell">
   <div class="cart-head">
-    <span class="small-label">корзина</span>
-    <h1>Ваши выбранные ароматы</h1>
+    <span class="small-label">Корзина</span>
+    <h1>Ваша корзина</h1>
     <p>Изменяйте количество, удаляйте товары и переходите к оформлению заказа.</p>
   </div>
 
@@ -16,17 +16,17 @@
               <span>{{ item.product.brand }}</span>
               <p>€{{ item.product.price }} × {{ item.quantity }}</p>
               <div class="quantity">
-                <button type="button" (click)="changeQuantity(item.productId, item.quantity - 1)">-</button>
+                <button type="button" aria-label="Уменьшить количество" (click)="changeQuantity(item.productId, item.quantity - 1)">-</button>
                 <input
                   type="number"
                   [value]="item.quantity"
                   min="1"
                   (change)="changeQuantity(item.productId, $any($event.target).valueAsNumber)"
                 />
-                <button type="button" (click)="changeQuantity(item.productId, item.quantity + 1)">+</button>
+                <button type="button" aria-label="Увеличить количество" (click)="changeQuantity(item.productId, item.quantity + 1)">+</button>
               </div>
             </div>
-            <button type="button" class="remove" (click)="cartService.remove(item.productId)">
+            <button type="button" class="remove" [attr.aria-label]="'Удалить ' + item.product.name" (click)="cartService.remove(item.productId)">
               Удалить
             </button>
           </div>
@@ -35,9 +35,7 @@
 
       <aside class="summary-card">
         <div class="summary-row">
-          <p>
-            В корзине {{ cartService.totalQuantity() }} товар{{ cartService.totalQuantity() === 1 ? '' : 'а' }}.
-          </p>
+          <p>В корзине {{ totalQuantityLabel() }}.</p>
           <div class="summary-header">
             <span>Итого</span>
             <strong>€{{ cartService.totalPrice() }}</strong>
@@ -49,7 +47,7 @@
   } @else {
     <div class="empty-state">
       <h2>Корзина пуста</h2>
-      <p>Добавьте аромат из каталога и возвращайтесь сюда для оформления.</p>
+      <p>Добавьте понравившиеся ароматы из каталога — они появятся здесь.</p>
       <a routerLink="/" class="hero-button">Перейти в каталог</a>
     </div>
   }

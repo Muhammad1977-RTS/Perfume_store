@@ -17,4 +17,12 @@ export class CartComponent {
   changeQuantity(itemId: string, value: number) {
     this.cartService.updateQuantity(itemId, value);
   }
+
+  totalQuantityLabel(): string {
+    const n = this.cartService.totalQuantity();
+    const mod10 = n % 10, mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return `${n} товар`;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return `${n} товара`;
+    return `${n} товаров`;
+  }
 }
