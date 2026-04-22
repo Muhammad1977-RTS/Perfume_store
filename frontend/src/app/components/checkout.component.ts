@@ -35,6 +35,14 @@ export class CheckoutComponent {
   regMessage  = signal('');
   regDone     = signal(false);
 
+  totalQuantityLabel(): string {
+    const n = this.cartService.totalQuantity();
+    const mod10 = n % 10, mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return `${n} товар`;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return `${n} товара`;
+    return `${n} товаров`;
+  }
+
   submit(form: NgForm): void {
     if (form.invalid || !this.cartService.itemsWithProduct().length) return;
 
@@ -63,7 +71,7 @@ export class CheckoutComponent {
     this.ordersService.create(order, guestEmail).subscribe({
       next: () => {
         this.cartService.clear();
-        this.message.set('Заказ успешно оформлен! Уведомление отправлено в Telegram.');
+        this.message.set('Заказ успешно оформлен! Мы скоро свяжемся с вами.');
         this.submitted.set(true);
         this.busy.set(false);
         if (!this.authService.isLoggedIn()) {

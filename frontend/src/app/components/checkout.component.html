@@ -1,12 +1,12 @@
 <section class="checkout-shell">
   <div class="checkout-head">
-    <span class="small-label">оформление заказа</span>
+    <span class="small-label">Оформление заказа</span>
     <h1>Заполните данные для доставки</h1>
     <p>
       @if (authService.isLoggedIn()) {
         Вы вошли как <strong>{{ authService.user()?.email }}</strong>.
       } @else {
-        Введите email, чтобы получить историю заказов.
+        Укажите email, чтобы мы могли прислать подтверждение заказа.
       }
     </p>
   </div>
@@ -16,7 +16,7 @@
 
       @if (!authService.isLoggedIn()) {
         <label>
-          Email (необязательно)
+          Email (по желанию)
           <input type="email" [(ngModel)]="guestEmail" name="guestEmail" />
         </label>
       }
@@ -38,7 +38,7 @@
         class="button"
         [disabled]="busy() || !cartService.itemsWithProduct().length"
       >
-        {{ busy() ? 'Отправка...' : 'Отправить заказ' }}
+        {{ busy() ? 'Отправка…' : 'Отправить заказ' }}
       </button>
 
       @if (submitted()) {
@@ -52,7 +52,7 @@
     <aside class="order-summary">
       <div class="summary-box">
         <span>Состав заказа</span>
-        <strong>{{ cartService.totalQuantity() }} товар{{ cartService.totalQuantity() === 1 ? '' : 'а' }}</strong>
+        <strong>{{ totalQuantityLabel() }}</strong>
       </div>
       <ul class="summary-list">
         @for (item of cartService.itemsWithProduct(); track item.productId) {
@@ -74,7 +74,7 @@
 @if (showRegisterPrompt()) {
   <div class="register-prompt-overlay">
     <div class="register-prompt">
-      <h2>Сохранить данные?</h2>
+      <h2>Создать аккаунт?</h2>
       <p>Создайте аккаунт, чтобы отслеживать заказы и ускорить следующую покупку.</p>
 
       @if (!regDone()) {
@@ -87,9 +87,9 @@
         }
         <div class="prompt-actions">
           <button class="button" (click)="registerAfterOrder()" [disabled]="regBusy()">
-            {{ regBusy() ? 'Создаём...' : 'Создать аккаунт' }}
+            {{ regBusy() ? 'Создаём…' : 'Создать аккаунт' }}
           </button>
-          <button class="button button--ghost" (click)="dismissRegisterPrompt()">Нет, спасибо</button>
+          <button class="button button--ghost" (click)="dismissRegisterPrompt()">Пропустить</button>
         </div>
       } @else {
         <div class="success-message">{{ regMessage() }}</div>
