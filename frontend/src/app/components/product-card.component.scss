@@ -27,6 +27,11 @@
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: #111;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  cursor: zoom-in;
 }
 
 .media img {
@@ -34,7 +39,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  cursor: zoom-in;
 }
 
 .lightbox {
@@ -55,6 +59,26 @@
     border-radius: 16px;
     box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
   }
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover { background: rgba(255, 255, 255, 0.24); }
 }
 
 .product-body {

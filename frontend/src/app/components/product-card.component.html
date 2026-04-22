@@ -1,7 +1,7 @@
 <article class="product-card">
-  <div class="media" (click)="openLightbox()">
+  <button type="button" class="media" [attr.aria-label]="'Посмотреть фото: ' + product.name" (click)="openLightbox()">
     <img [src]="product.imageUrl" [alt]="product.name" loading="lazy" />
-  </div>
+  </button>
   <div class="product-body">
     <div class="product-meta">
       <span class="brand">{{ product.brand }}</span>
@@ -9,12 +9,15 @@
     </div>
     <h3>{{ product.name }}</h3>
     <p>{{ product.description }}</p>
-    <button type="button" class="button" (click)="handleAdd()">Добавить в корзину</button>
+    <button type="button" class="button" (click)="handleAdd()" [disabled]="added()">
+      {{ added() ? 'Добавлено ✓' : 'Добавить в корзину' }}
+    </button>
   </div>
 </article>
 
 @if (lightboxOpen) {
-  <div class="lightbox" (click)="closeLightbox()">
+  <div class="lightbox" role="dialog" [attr.aria-label]="'Фото: ' + product.name" (click)="closeLightbox()">
+    <button type="button" class="lightbox-close" aria-label="Закрыть" (click)="closeLightbox()">✕</button>
     <img [src]="product.imageUrl" [alt]="product.name" />
   </div>
 }

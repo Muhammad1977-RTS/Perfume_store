@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output, signal } from '@angular/core';
 import { Product } from '../models/product.model';
 
 @Component({
@@ -14,11 +14,17 @@ export class ProductCardComponent {
   @Output() addToCart = new EventEmitter<string>();
 
   lightboxOpen = false;
+  added = signal(false);
 
   openLightbox() { this.lightboxOpen = true; }
   closeLightbox() { this.lightboxOpen = false; }
 
+  @HostListener('document:keydown.escape')
+  onEscape() { this.lightboxOpen = false; }
+
   handleAdd() {
     this.addToCart.emit(this.product.id);
+    this.added.set(true);
+    setTimeout(() => this.added.set(false), 1500);
   }
 }
