@@ -9,18 +9,23 @@
   grid-template-rows: auto 1fr;
   height: 100%;
   min-height: 420px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--crystal-1);
+  border: 1px solid var(--gossamer);
   border-radius: 24px;
   overflow: hidden;
   transition:
-    transform 0.25s ease,
-    border-color 0.25s ease;
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.4s ease;
 }
 
+/* Amber glow — light through glass — the Atelier signature */
 .product-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(255, 255, 255, 0.16);
+  border-color: rgba(196, 133, 42, 0.32);
+  box-shadow:
+    0 0 48px rgba(196, 133, 42, 0.14),
+    0 24px 64px rgba(0, 0, 0, 0.35);
 }
 
 .media {
@@ -39,6 +44,11 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .media img {
+  transform: scale(1.04);
 }
 
 .lightbox {
@@ -65,7 +75,7 @@
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--crystal-3);
   border: none;
   border-radius: 50%;
   color: #fff;
@@ -78,7 +88,7 @@
   cursor: pointer;
   transition: background 0.2s ease;
 
-  &:hover { background: rgba(255, 255, 255, 0.24); }
+  &:hover { background: var(--gossamer-hi); }
 }
 
 .product-body {
@@ -92,28 +102,31 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--ink-soft);
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 0.76rem;
 }
 
 .price {
-  color: #fff;
+  color: var(--ink);
   font-weight: 700;
   font-size: 1.4rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .product-body h3 {
   margin: 0;
-  color: #fff;
+  color: var(--ink);
+  font-family: Georgia, serif;
   font-size: 1.15rem;
   line-height: 1.2;
+  font-weight: 500;
 }
 
 .product-body p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.64);
+  color: var(--ink-soft);
   font-size: 0.95rem;
   line-height: 1.6;
   flex: 1;
@@ -122,7 +135,7 @@
 .button {
   border: none;
   border-radius: 999px;
-  background: #d0d0d0;
+  background: #fff;
   color: #111;
   padding: 0.95rem 1.25rem;
   font-weight: 700;

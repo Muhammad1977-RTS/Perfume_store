@@ -1,8 +1,40 @@
+/* Atelier — Perfume Store Design Tokens */
 :root {
+  /* Surfaces — named from the perfumery world */
+  --velvet:      #0E0C0A;   /* warm near-black, luxury box interior */
+  --velvet-deep: #141210;   /* deeper shade for gradients */
+  --gold:        #E8C96A;   /* champagne gold — atomizer caps */
+  --amber:       #C4852A;   /* amber glass — bottle held to light */
+
+  /* Surface overlays (on --velvet base) */
+  --crystal-1:   rgba(255, 255, 255, 0.04);
+  --crystal-2:   rgba(255, 255, 255, 0.06);
+  --crystal-3:   rgba(255, 255, 255, 0.08);
+
+  /* Borders */
+  --gossamer:    rgba(255, 255, 255, 0.07);
+  --gossamer-mid:rgba(255, 255, 255, 0.12);
+  --gossamer-hi: rgba(255, 255, 255, 0.20);
+
+  /* Text hierarchy */
+  --ink:         #ffffff;
+  --ink-soft:    rgba(255, 255, 255, 0.72);
+  --ink-faint:   rgba(255, 255, 255, 0.45);
+
+  /* Semantic */
+  --success-bg:  rgba(60, 206, 179, 0.15);
+  --success-fg:  #b9ffea;
+  --warning-bg:  rgba(232, 201, 106, 0.15);
+  --warning-fg:  #E8C96A;
+  --info-bg:     rgba(96, 165, 250, 0.15);
+  --info-fg:     #93c5fd;
+  --danger-bg:   rgba(245, 66, 93, 0.14);
+  --danger-fg:   #ffb0c7;
+
   color-scheme: dark;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background: #050505;
-  color: #fff;
+  background: var(--velvet);
+  color: var(--ink);
 }
 
 * {
@@ -17,8 +49,13 @@ app-root {
 
 body {
   margin: 0;
-  background: #050505;
-  color: #fff;
+  background: var(--velvet);
+  color: var(--ink);
+}
+
+h1,
+h2 {
+  font-family: Georgia, serif;
 }
 
 button,
@@ -34,7 +71,7 @@ a {
 
 .app-shell {
   min-height: 100vh;
-  background: linear-gradient(180deg, #070707 0%, #121212 100%);
+  background: linear-gradient(180deg, var(--velvet) 0%, var(--velvet-deep) 100%);
 }
 
 .app-main {
