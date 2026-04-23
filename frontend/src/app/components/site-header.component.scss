@@ -8,9 +8,9 @@
   gap: 1rem;
   align-items: center;
   padding: 1.5rem clamp(1rem, 3vw, 2rem);
-  border-bottom: 1px solid var(--gossamer);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(18px);
-  background: rgba(14, 12, 10, 0.75);
+  background: rgba(0, 0, 0, 0.7);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -24,7 +24,7 @@
 }
 
 .brand a {
-  color: var(--gold);
+  color: #E8C96A;
   font-size: 1.15rem;
   font-weight: 700;
   text-decoration: none;
@@ -36,8 +36,8 @@
   display: inline-flex;
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
-  background: var(--crystal-3);
-  color: var(--gold);
+  background: rgba(255, 255, 255, 0.08);
+  color: #E8C96A;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -46,7 +46,7 @@
 .subtitle {
   display: block;
   margin-top: 0.3rem;
-  color: var(--ink-faint);
+  color: rgba(255, 255, 255, 0.5);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
 }
@@ -59,15 +59,14 @@
 }
 
 .nav-links a {
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
   font-size: 0.95rem;
-  transition: color 0.2s;
 }
 
 .nav-links a.active,
 .nav-links a:hover {
-  color: var(--ink);
+  color: #fff;
 }
 
 .actions {
@@ -80,14 +79,14 @@
 .btn-login {
   padding: 0.6rem 1.2rem;
   border-radius: 999px;
-  background: var(--crystal-3);
-  color: var(--ink);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
   transition: background 0.2s;
 
-  &:hover { background: var(--gossamer-hi); }
+  &:hover { background: rgba(255, 255, 255, 0.16); }
 }
 
 .user-menu {
@@ -97,7 +96,7 @@
 }
 
 .user-name {
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.78);
   font-size: 0.88rem;
   max-width: 160px;
   overflow: hidden;
@@ -108,26 +107,25 @@
 .btn-orders {
   padding: 0.45rem 1rem;
   border-radius: 999px;
-  background: var(--crystal-3);
+  background: rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   font-size: 0.85rem;
-  transition: background 0.2s;
 
-  &:hover { background: var(--gossamer-hi); }
+  &:hover { background: rgba(255, 255, 255, 0.16); }
 }
 
 .btn-logout {
   background: none;
-  border: 1px solid var(--gossamer-hi);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.7);
   padding: 0.45rem 1rem;
   font-size: 0.85rem;
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
 
-  &:hover { border-color: var(--gossamer-hi); color: var(--ink); }
+  &:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
 }
 
 .cart-link {
@@ -136,20 +134,17 @@
   gap: 0.65rem;
   padding: 0.85rem 1rem;
   border-radius: 999px;
-  background: var(--crystal-3);
-  color: var(--ink);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
-  transition: background 0.2s;
-
-  &:hover { background: var(--gossamer-hi); }
 }
 
 .cart-link strong {
   display: inline-flex;
   min-width: 2rem;
   justify-content: center;
-  background: var(--gossamer-hi);
+  background: rgba(255, 255, 255, 0.18);
   border-radius: 999px;
   padding: 0.2rem 0.5rem;
 }
