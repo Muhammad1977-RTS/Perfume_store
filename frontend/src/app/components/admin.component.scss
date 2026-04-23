@@ -11,8 +11,8 @@
   display: inline-flex;
   padding: 0.5rem 0.95rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.74);
+  background: var(--crystal-3);
+  color: var(--ink-soft);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -20,7 +20,7 @@
 
 h1 {
   margin: 1rem 0 0;
-  color: #fff;
+  color: var(--ink);
   font-size: clamp(2.25rem, 4vw, 3rem);
 }
 
@@ -32,8 +32,8 @@ h1 {
 
 .admin-form,
 .product-list {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--crystal-1);
+  border: 1px solid var(--gossamer);
   border-radius: 24px;
   padding: 1.75rem;
 }
@@ -45,7 +45,7 @@ h1 {
 }
 
 .field-group label {
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--ink-soft);
   font-size: 0.92rem;
 }
 
@@ -53,11 +53,17 @@ h1 {
 .field-group textarea {
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: #fff;
+  border: 1px solid var(--gossamer-mid);
+  background: var(--crystal-1);
+  color: var(--ink);
   border-radius: 16px;
   padding: 1rem 1.15rem;
+  transition: border-color 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: rgba(196, 133, 42, 0.5);
+  }
 }
 
 .buttons {
@@ -73,23 +79,26 @@ h1 {
   padding: 0.95rem 1.35rem;
   cursor: pointer;
   font-weight: 700;
+  transition: background 0.2s;
 }
 
 .button {
   background: #fff;
   color: #111;
+  &:hover { background: rgba(255, 255, 255, 0.9); }
 }
 
 .ghost {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: var(--crystal-3);
+  color: var(--ink);
+  &:hover { background: var(--gossamer-hi); }
 }
 
 .product-list .list-header {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--ink-soft);
   margin-bottom: 1rem;
 }
 
@@ -98,7 +107,7 @@ h1 {
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--gossamer);
 }
 
 .product-row:first-child {
@@ -107,7 +116,7 @@ h1 {
 
 .product-row p {
   margin: 0.35rem 0 0;
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--ink-soft);
 }
 
 .row-actions {
@@ -118,23 +127,28 @@ h1 {
 
 .row-actions button {
   border: none;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: var(--crystal-3);
+  color: var(--ink);
   padding: 0.7rem 1rem;
   border-radius: 999px;
   cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover { background: var(--gossamer-hi); }
 }
 
 .row-actions .danger {
-  background: rgba(245, 66, 93, 0.14);
-  color: #ff8da1;
+  background: var(--danger-bg);
+  color: var(--danger-fg);
+
+  &:hover { background: rgba(245, 66, 93, 0.24); }
 }
 
 .admin-orders {
   margin-top: 3rem;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--crystal-1);
+  border: 1px solid var(--gossamer);
   overflow: hidden;
 }
 
@@ -144,9 +158,11 @@ h1 {
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--gossamer);
+  transition: background 0.15s;
 
   &:first-of-type { border-top: none; }
+  &:hover { background: var(--crystal-2); }
 }
 
 .order-row__info {
@@ -154,8 +170,8 @@ h1 {
   flex-direction: column;
   gap: 0.2rem;
 
-  strong { color: #fff; }
-  span   { color: rgba(255,255,255,0.55); font-size: 0.85rem; }
+  strong { color: var(--ink); }
+  span   { color: var(--ink-faint); font-size: 0.85rem; }
 }
 
 .order-row__address {
@@ -170,9 +186,10 @@ h1 {
 }
 
 .order-total {
-  color: #E8C96A;
+  color: var(--gold);
   font-weight: 700;
   font-size: 1.1rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .status-select {
@@ -184,11 +201,11 @@ h1 {
   cursor: pointer;
   appearance: auto;
 
-  &--pending    { background: rgba(232,201,106,0.15); color: #E8C96A; }
-  &--processing { background: rgba(96,165,250,0.15);  color: #93c5fd; }
-  &--delivered  { background: rgba(60,206,179,0.15);  color: #b9ffea; }
+  &--pending    { background: var(--warning-bg); color: var(--warning-fg); }
+  &--processing { background: var(--info-bg);    color: var(--info-fg); }
+  &--delivered  { background: var(--success-bg); color: var(--success-fg); }
 
-  option { background: #1a1a2e; color: #fff; }
+  option { background: #1a1612; color: var(--ink); }
 }
 
 @media (max-width: 900px) {

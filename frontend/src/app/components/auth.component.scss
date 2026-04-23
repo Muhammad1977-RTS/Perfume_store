@@ -9,8 +9,8 @@
 .auth-card {
   width: 100%;
   max-width: 440px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--crystal-1);
+  border: 1px solid var(--gossamer);
   border-radius: 24px;
   padding: 2.5rem;
   display: grid;
@@ -21,8 +21,8 @@
   display: inline-flex;
   padding: 0.5rem 0.95rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.74);
+  background: var(--crystal-3);
+  color: var(--ink-soft);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -30,7 +30,7 @@
 }
 
 h1 {
-  color: #fff;
+  color: var(--ink);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   margin: 0;
 }
@@ -43,18 +43,24 @@ h1 {
 label {
   display: grid;
   gap: 0.6rem;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--ink-soft);
 }
 
 input {
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: #fff;
+  border: 1px solid var(--gossamer-mid);
+  background: var(--crystal-1);
+  color: var(--ink);
   padding: 0.88rem 1.15rem;
   font-size: 0.95rem;
   width: 100%;
   box-sizing: border-box;
+  transition: border-color 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: rgba(196, 133, 42, 0.5);
+  }
 }
 
 .button {
@@ -66,19 +72,21 @@ input {
   cursor: pointer;
   font-weight: 700;
   font-size: 1rem;
+  transition: background 0.2s;
 
+  &:hover { background: rgba(255, 255, 255, 0.9); }
   &:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 
 .error-message {
   padding: 0.9rem 1.1rem;
   border-radius: 14px;
-  background: rgba(245, 66, 93, 0.14);
-  color: #ffb0c7;
+  background: var(--danger-bg);
+  color: var(--danger-fg);
 }
 
 .toggle-link {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--ink-soft);
   text-align: center;
   margin: 0;
 }
@@ -86,7 +94,7 @@ input {
 .link-btn {
   background: none;
   border: none;
-  color: #E8C96A;
+  color: var(--gold);
   cursor: pointer;
   font-size: inherit;
   padding: 0;

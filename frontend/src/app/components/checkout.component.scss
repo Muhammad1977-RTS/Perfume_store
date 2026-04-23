@@ -11,8 +11,8 @@
   display: inline-flex;
   padding: 0.5rem 0.95rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.74);
+  background: var(--crystal-3);
+  color: var(--ink-soft);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -20,7 +20,7 @@
 
 h1 {
   margin: 1rem 0 0;
-  color: #fff;
+  color: var(--ink);
   font-size: clamp(2.25rem, 4vw, 3rem);
 }
 
@@ -35,14 +35,14 @@ h1 {
   gap: 1rem;
   padding: 2.375rem;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--crystal-1);
+  border: 1px solid var(--gossamer);
 }
 
 .checkout-form label {
   display: grid;
   gap: 0.7rem;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--ink-soft);
 }
 
 .checkout-form input,
@@ -50,12 +50,18 @@ h1 {
   width: 100%;
   box-sizing: border-box;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: #fff;
+  border: 1px solid var(--gossamer-mid);
+  background: var(--crystal-1);
+  color: var(--ink);
   padding: 0.88rem 1.15rem;
   font-size: 0.95rem;
   resize: vertical;
+  transition: border-color 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: rgba(196, 133, 42, 0.5);
+  }
 }
 
 .button {
@@ -66,22 +72,25 @@ h1 {
   padding: 1rem 1.35rem;
   cursor: pointer;
   font-weight: 700;
+  transition: background 0.2s;
+
+  &:hover { background: rgba(255, 255, 255, 0.9); }
 }
 
 .success-message {
   margin-top: 1rem;
   padding: 1rem 1.2rem;
   border-radius: 18px;
-  background: rgba(60, 206, 179, 0.16);
-  color: #b9ffea;
+  background: var(--success-bg);
+  color: var(--success-fg);
 }
 
 .error-message {
   margin-top: 1rem;
   padding: 1rem 1.2rem;
   border-radius: 18px;
-  background: rgba(245, 66, 93, 0.14);
-  color: #ffb0c7;
+  background: var(--danger-bg);
+  color: var(--danger-fg);
 }
 
 .order-summary {
@@ -96,20 +105,20 @@ h1 {
   align-items: center;
   padding: 0.95rem 1.2rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--crystal-1);
+  border: 1px solid var(--gossamer);
 }
 
 .summary-box span,
 .summary-total span {
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--ink-soft);
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
 
 .summary-box strong,
 .summary-total strong {
-  color: #fff;
+  color: var(--ink);
 }
 
 .summary-list {
@@ -125,14 +134,14 @@ h1 {
   justify-content: space-between;
   padding: 1rem 1.25rem;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--crystal-1);
   color: rgba(255, 255, 255, 0.82);
 }
 
 .button--ghost {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--gossamer-mid);
+  color: var(--ink-soft);
 }
 
 .register-prompt-overlay {
@@ -146,8 +155,8 @@ h1 {
 }
 
 .register-prompt {
-  background: #1a1a2e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #1a1612;
+  border: 1px solid var(--gossamer-mid);
   border-radius: 24px;
   padding: 2.5rem;
   max-width: 420px;
@@ -155,21 +164,31 @@ h1 {
   display: grid;
   gap: 1.2rem;
 
-  h2 { color: #fff; margin: 0; }
-  p  { color: rgba(255,255,255,0.7); margin: 0; }
+  h2 {
+    color: var(--ink);
+    margin: 0;
+    font-family: Georgia, serif;
+  }
+  p  { color: var(--ink-soft); margin: 0; }
 
   label {
     display: grid;
     gap: 0.6rem;
-    color: rgba(255,255,255,0.78);
+    color: var(--ink-soft);
 
     input {
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      color: #fff;
+      border: 1px solid var(--gossamer-mid);
+      background: var(--crystal-1);
+      color: var(--ink);
       padding: 0.85rem 1.1rem;
       font-size: 0.95rem;
+      transition: border-color 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: rgba(196, 133, 42, 0.5);
+      }
     }
   }
 }
