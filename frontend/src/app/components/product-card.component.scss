@@ -9,29 +9,23 @@
   grid-template-rows: auto 1fr;
   height: 100%;
   min-height: 420px;
-  background: var(--crystal-1);
-  border: 1px solid var(--gossamer);
+  background: var(--card-bg);
+  border: none;
   border-radius: 24px;
-  overflow: hidden;
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.4s ease;
+  overflow: clip;
+  background-clip: padding-box;
+  transform: translateZ(0);
+  transition: var(--card-transition);
 }
 
-/* Amber glow — light through glass — the Atelier signature */
 .product-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(196, 133, 42, 0.32);
-  box-shadow:
-    0 0 48px rgba(196, 133, 42, 0.14),
-    0 24px 64px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--card-hover-shadow);
 }
 
 .media {
   aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background: #111;
+  background: var(--media-bg);
   display: block;
   width: 100%;
   padding: 0;
@@ -48,7 +42,7 @@
 }
 
 .product-card:hover .media img {
-  transform: scale(1.04);
+  transform: scale(var(--img-hover-scale));
 }
 
 .lightbox {
@@ -75,7 +69,7 @@
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
-  background: var(--crystal-3);
+  background: rgba(255, 255, 255, 0.12);
   border: none;
   border-radius: 50%;
   color: #fff;
@@ -88,7 +82,7 @@
   cursor: pointer;
   transition: background 0.2s ease;
 
-  &:hover { background: var(--gossamer-hi); }
+  &:hover { background: rgba(255, 255, 255, 0.24); }
 }
 
 .product-body {
@@ -112,13 +106,12 @@
   color: var(--ink);
   font-weight: 700;
   font-size: 1.4rem;
-  font-variant-numeric: tabular-nums;
 }
 
 .product-body h3 {
   margin: 0;
   color: var(--ink);
-  font-family: Georgia, serif;
+  font-family: var(--heading-font);
   font-size: 1.15rem;
   line-height: 1.2;
   font-weight: 500;
@@ -135,7 +128,7 @@
 .button {
   border: none;
   border-radius: 999px;
-  background: #fff;
+  background: var(--card-btn-bg);
   color: #111;
   padding: 0.95rem 1.25rem;
   font-weight: 700;

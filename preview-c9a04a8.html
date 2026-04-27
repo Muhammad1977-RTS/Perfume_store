@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview — коммит c9a04a8 (тёмная тема)</title>
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #070707 0%, #121212 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { font: inherit; }
+
+    /* ── Header ── */
+    .site-header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.5rem clamp(1rem, 3vw, 2rem);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px);
+      background: rgba(0,0,0,0.7);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .brand a {
+      color: #E8C96A;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pill {
+      display: inline-flex;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #E8C96A;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+    .nav-links { display: flex; gap: 1rem; justify-content: center; }
+    .nav-links a { color: rgba(255,255,255,0.72); font-size: 0.95rem; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .actions { display: flex; align-items: center; gap: 0.75rem; justify-content: flex-end; }
+    .btn-login {
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .btn-login:hover { background: rgba(255,255,255,0.16); }
+    .cart-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.85rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-weight: 500;
+    }
+    .cart-link:hover { background: rgba(255,255,255,0.16); }
+    .cart-link strong {
+      display: inline-flex;
+      min-width: 2rem;
+      justify-content: center;
+      background: rgba(255,255,255,0.18);
+      border-radius: 999px;
+      padding: 0.2rem 0.5rem;
+    }
+
+    /* ── Hero ── */
+    .hero-section {
+      background: linear-gradient(180deg, rgba(0,0,0,0.96) 0%, rgba(12,12,12,0.92) 100%);
+      padding: clamp(3rem,7vw,6rem) clamp(1.5rem,4vw,5rem);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .label-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
+    .label {
+      display: inline-flex;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.82);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.75rem;
+    }
+    h1 {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      font-size: clamp(3rem,6vw,5.25rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      color: #fff;
+    }
+    .hero-copy p {
+      max-width: 770px;
+      margin: 1.75rem 0 0;
+      color: rgba(255,255,255,0.72);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; }
+    .hero-button {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 170px; padding: 1rem 1.5rem;
+      border-radius: 999px; font-weight: 700;
+      background: #fff; color: #111; border: none; cursor: pointer;
+    }
+    .hero-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 170px; padding: 1rem 1.5rem;
+      border-radius: 999px; font-weight: 700;
+      color: #fff; border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    /* ── Filters / Brand chips ── */
+    .filters { padding: clamp(2rem,3vw,3rem) clamp(1.5rem,4vw,5rem); }
+    .filters-heading {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem; margin-bottom: 1rem; color: rgba(255,255,255,0.78);
+    }
+    .clear-button {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      padding: 0.85rem 1.2rem;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .brand-list { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+    .brand-chip {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.84);
+      padding: 0.85rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .brand-chip.active {
+      background: rgba(255,255,255,0.14);
+      border-color: #E8C96A;
+    }
+
+    /* ── Catalog ── */
+    .catalog { padding: clamp(2rem,3vw,4rem) clamp(1.5rem,4vw,5rem); }
+    .catalog-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; margin-bottom: 2rem;
+    }
+    .catalog-header h2 {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      color: #fff;
+      font-size: clamp(2rem,4vw,2.75rem);
+    }
+    .catalog-header span { color: rgba(255,255,255,0.7); }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 1.5rem;
+    }
+
+    /* ── Product Card ── */
+    .product-card {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 420px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.16);
+    }
+    .media {
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .media-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.1);
+      font-size: 4rem;
+    }
+    .product-body {
+      display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem;
+    }
+    .product-meta {
+      display: flex; justify-content: space-between; gap: 1rem;
+      color: rgba(255,255,255,0.72); text-transform: uppercase;
+      letter-spacing: 0.14em; font-size: 0.76rem;
+    }
+    .price { color: #fff; font-weight: 700; font-size: 1.4rem; }
+    .product-body h3 {
+      margin: 0; color: #fff;
+      font-family: Inter, sans-serif;
+      font-size: 1.15rem; line-height: 1.2;
+    }
+    .product-body p { margin: 0; color: rgba(255,255,255,0.64); font-size: 0.95rem; line-height: 1.6; flex: 1; }
+    .button {
+      border: none; border-radius: 999px;
+      background: #d0d0d0; color: #111;
+      padding: 0.95rem 1.25rem; font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+    .button:hover { transform: translateY(-1px); }
+
+    /* ── Footer ── */
+    .site-footer {
+      margin-top: auto;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px);
+      background: rgba(0,0,0,0.7);
+      padding: 2.5rem clamp(1rem,3vw,2rem);
+    }
+    .footer-inner {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; gap: 2rem;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 0.35rem; }
+    .brand-name { color: #fff; font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .brand-sub  { color: #fff; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em; opacity: 0.7; }
+    .footer-nav { display: flex; gap: 1.5rem; }
+    .footer-nav a { color: rgba(255,255,255,0.6); font-size: 0.9rem; transition: color 0.2s; }
+    .footer-nav a:hover { color: #E8C96A; }
+    .footer-copy { text-align: right; color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="brand">
+    <a href="#">PERFUME STUDIO</a>
+    <span class="pill">luxury menswear fragrance</span>
+  </div>
+  <nav class="nav-links">
+    <a href="#" class="active">Каталог</a>
+    <a href="#">Корзина</a>
+    <a href="#">Оформить заказ</a>
+  </nav>
+  <div class="actions">
+    <a href="#" class="btn-login">Войти</a>
+    <a href="#" class="cart-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <strong>0</strong>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-copy">
+    <div class="label-row">
+      <span class="label">Новая коллекция</span>
+      <span class="label">Мужская парфюмерия</span>
+    </div>
+    <h1>Парфюмерия<br>для настоящих</h1>
+    <p>Curated collection of luxury menswear fragrances — from bold ouds to crisp aquatics. Each bottle tells a story.</p>
+    <div class="hero-actions">
+      <button class="hero-button">Смотреть каталог</button>
+      <a href="#" class="hero-link">О нас</a>
+    </div>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<section class="filters">
+  <div class="filters-heading">
+    <span>Бренды</span>
+    <button class="clear-button">Сбросить</button>
+  </div>
+  <div class="brand-list">
+    <button class="brand-chip active">Все</button>
+    <button class="brand-chip">Creed</button>
+    <button class="brand-chip">Tom Ford</button>
+    <button class="brand-chip">Dior</button>
+    <button class="brand-chip">Chanel</button>
+    <button class="brand-chip">Amouage</button>
+    <button class="brand-chip">Roja Parfums</button>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section class="catalog">
+  <div class="catalog-header">
+    <h2>Каталог</h2>
+    <span>15 товаров</span>
+  </div>
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="media"><div class="media-placeholder">◈</div></div>
+      <div class="product-body">
+        <div class="product-meta">
+          <span>Creed</span>
+          <span class="price">18 500 ₽</span>
+        </div>
+        <h3>Aventus</h3>
+        <p>Iconic fruity-woody fragrance. Pineapple, birch, musk. The scent of success.</p>
+        <button class="button">В корзину</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="media"><div class="media-placeholder">◈</div></div>
+      <div class="product-body">
+        <div class="product-meta">
+          <span>Tom Ford</span>
+          <span class="price">14 200 ₽</span>
+        </div>
+        <h3>Oud Wood</h3>
+        <p>Rare oud wood, sandalwood, rosewood. Mysterious and sophisticated.</p>
+        <button class="button">В корзину</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="media"><div class="media-placeholder">◈</div></div>
+      <div class="product-body">
+        <div class="product-meta">
+          <span>Dior</span>
+          <span class="price">9 800 ₽</span>
+        </div>
+        <h3>Sauvage Elixir</h3>
+        <p>Spicy, raw, noble. Cardamom, sandalwood, licorice root.</p>
+        <button class="button">В корзину</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="media"><div class="media-placeholder">◈</div></div>
+      <div class="product-body">
+        <div class="product-meta">
+          <span>Amouage</span>
+          <span class="price">24 000 ₽</span>
+        </div>
+        <h3>Interlude Man</h3>
+        <p>Oregano, amber, smoke. An olfactory journey like no other.</p>
+        <button class="button">В корзину</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="media"><div class="media-placeholder">◈</div></div>
+      <div class="product-body">
+        <div class="product-meta">
+          <span>Chanel</span>
+          <span class="price">11 500 ₽</span>
+        </div>
+        <h3>Bleu de Chanel EDP</h3>
+        <p>Grapefruit, labdanum, sandalwood. Timeless masculine elegance.</p>
+        <button class="button">В корзину</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="media"><div class="media-placeholder">◈</div></div>
+      <div class="product-body">
+        <div class="product-meta">
+          <span>Roja Parfums</span>
+          <span class="price">32 000 ₽</span>
+        </div>
+        <h3>Elysium Pour Homme</h3>
+        <p>Fresh and vibrant. Grapefruit, bergamot, cedarwood. Pure luxury.</p>
+        <button class="button">В корзину</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-name">Perfume Studio</span>
+      <span class="brand-sub">luxury menswear fragrance</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="#">Каталог</a>
+      <a href="#">Доставка</a>
+      <a href="#">Контакты</a>
+    </nav>
+    <div class="footer-copy">© 2025 Perfume Studio</div>
+  </div>
+</footer>
+
+</body>
+</html>

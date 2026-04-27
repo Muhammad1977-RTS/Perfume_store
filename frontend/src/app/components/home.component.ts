@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, ElementRef, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CartService } from '../services/cart.service';
@@ -16,6 +16,8 @@ const PAGE_SIZE = 8;
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  @ViewChild('catalogSection') catalogSection!: ElementRef<HTMLElement>;
+
   readonly selectedBrand = signal<string | null>(null);
   readonly currentPage   = signal(1);
 
@@ -62,7 +64,7 @@ export class HomeComponent {
   goToPage(page: number) {
     if (page < 1 || page > this.totalPages()) return;
     this.currentPage.set(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.catalogSection.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   addToCart(productId: string) {

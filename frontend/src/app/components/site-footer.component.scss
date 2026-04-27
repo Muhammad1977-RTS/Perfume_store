@@ -6,7 +6,8 @@
   margin-top: auto;
   border-top: 1px solid var(--gossamer);
   backdrop-filter: blur(18px);
-  background: rgba(14, 12, 10, 0.75);
+  background: var(--footer-bg);
+  transition: background 0.3s ease;
   padding: 2.5rem clamp(1rem, 3vw, 2rem);
 }
 
@@ -24,7 +25,7 @@
 }
 
 .brand-name {
-  color: var(--ink);
+  color: #fff;
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -33,7 +34,7 @@
 }
 
 .brand-sub {
-  color: var(--ink);
+  color: #fff;
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -45,20 +46,20 @@
   gap: 1.5rem;
 
   a {
-    color: var(--ink-soft);
+    color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.2s;
 
     &:hover {
-      color: var(--gold);
+      color: #E8C96A;
     }
   }
 }
 
 .footer-copy {
   text-align: right;
-  color: var(--ink-faint);
+  color: rgba(255, 255, 255, 0.35);
   font-size: 0.8rem;
 }
 

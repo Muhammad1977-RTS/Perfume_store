@@ -4,14 +4,14 @@
 }
 
 .hero-section {
-  background: linear-gradient(180deg, rgba(14, 12, 10, 0.96) 0%, rgba(20, 18, 16, 0.92) 100%);
+  background: linear-gradient(180deg, var(--hero-start) 0%, var(--hero-end) 100%);
   padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 4vw, 5rem);
-  border-bottom: 1px solid var(--gossamer);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .hero-copy {
   max-width: 760px;
-  color: var(--ink);
+  color: #fff;
 }
 
 .label-row {
@@ -26,7 +26,7 @@
   margin-bottom: 0;
   padding: 0.55rem 1rem;
   border-radius: 999px;
-  background: var(--crystal-3);
+  background: rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.82);
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -37,14 +37,14 @@ h1 {
   margin: 0;
   font-size: clamp(3rem, 6vw, 5.25rem);
   line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--ink);
+  letter-spacing: var(--h1-tracking);
+  color: #fff;
 }
 
 .hero-copy p {
   max-width: 770px;
   margin: 1.75rem 0 0;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.72);
   font-size: 1.05rem;
   line-height: 1.8;
 }
@@ -74,8 +74,8 @@ h1 {
 }
 
 .hero-link {
-  color: var(--ink);
-  border: 1px solid var(--gossamer-mid);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .filters {
@@ -88,19 +88,16 @@ h1 {
   gap: 1rem;
   align-items: center;
   margin-bottom: 1rem;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .clear-button {
   background: transparent;
-  border: 1px solid var(--gossamer-mid);
-  color: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
   padding: 0.85rem 1.2rem;
   border-radius: 999px;
   cursor: pointer;
-  transition: border-color 0.2s;
-
-  &:hover { border-color: var(--gossamer-hi); }
 }
 
 .brand-list {
@@ -110,25 +107,21 @@ h1 {
 }
 
 .brand-chip {
-  border: 2px solid #E8C96A;
-  background: rgba(232, 201, 106, 0.08);
-  color: #E8C96A;
+  border: var(--chip-bw) solid var(--chip-bc);
+  background: var(--chip-bg);
+  color: var(--chip-color);
+  font-weight: var(--chip-fw);
   padding: 0.85rem 1rem;
   border-radius: 999px;
   cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 
-  &:hover {
-    background: rgba(232, 201, 106, 0.14);
-  }
+  &:hover { background: var(--chip-hover-bg); }
 }
 
 .brand-chip.active {
-  background: rgba(232, 201, 106, 0.32);
-  border: 2px solid #E8C96A;
-  color: #E8C96A;
-  font-weight: 600;
+  background: var(--chip-active-bg);
+  border-color: var(--chip-active-bc);
 }
 
 .catalog {
@@ -145,12 +138,12 @@ h1 {
 
 .catalog-header h2 {
   margin: 0;
-  color: var(--ink);
+  color: #fff;
   font-size: clamp(2rem, 4vw, 2.75rem);
 }
 
 .catalog-header span {
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .product-grid {
@@ -174,14 +167,14 @@ h1 {
   padding: 0 0.75rem;
   border-radius: 999px;
   border: 1px solid var(--gossamer-mid);
-  background: var(--crystal-1);
+  background: var(--page-btn-bg);
   color: var(--ink-soft);
   font-size: 0.95rem;
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s, color 0.2s;
 
   &:hover:not(:disabled) {
-    background: var(--crystal-3);
+    background: var(--page-btn-hover-bg);
     color: var(--ink);
   }
 

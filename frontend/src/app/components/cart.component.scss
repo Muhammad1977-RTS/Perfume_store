@@ -11,8 +11,8 @@
   display: inline-flex;
   padding: 0.5rem 0.95rem;
   border-radius: 999px;
-  background: var(--crystal-3);
-  color: var(--ink-soft);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.74);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -20,7 +20,7 @@
 
 h1 {
   margin: 1rem 0 0;
-  color: var(--ink);
+  color: #fff;
   font-size: clamp(2.25rem, 4vw, 3rem);
 }
 
@@ -42,12 +42,9 @@ h1 {
   gap: 1rem;
   align-items: center;
   padding: 1.25rem;
-  background: var(--crystal-1);
-  border: 1px solid var(--gossamer);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
-  transition: border-color 0.2s;
-
-  &:hover { border-color: var(--gossamer-mid); }
 }
 
 .cart-item img {
@@ -63,21 +60,19 @@ h1 {
 }
 
 .item-body strong {
-  color: var(--ink);
-  font-family: Georgia, serif;
-  font-weight: 500;
+  color: #fff;
 }
 
 .item-body span,
 .item-body p {
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .quantity {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--crystal-1);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 999px;
   padding: 0.35rem;
 }
@@ -85,7 +80,7 @@ h1 {
 .quantity button {
   border: none;
   background: transparent;
-  color: var(--ink);
+  color: #fff;
   cursor: pointer;
   width: 2rem;
   height: 2rem;
@@ -95,20 +90,17 @@ h1 {
   width: 3.5rem;
   border: none;
   background: transparent;
-  color: var(--ink);
+  color: #fff;
   text-align: center;
 }
 
 .remove {
   border: none;
-  background: var(--danger-bg);
-  color: var(--danger-fg);
+  background: rgba(245, 66, 93, 0.16);
+  color: #ffb0c7;
   padding: 0.8rem 1rem;
   border-radius: 999px;
   cursor: pointer;
-  transition: background 0.2s;
-
-  &:hover { background: rgba(245, 66, 93, 0.24); }
 }
 
 .summary-card {
@@ -117,8 +109,8 @@ h1 {
   padding: 1.75rem;
   justify-items: center;
   border-radius: 24px;
-  background: var(--crystal-1);
-  border: 1px solid var(--gossamer);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .summary-row {
@@ -130,7 +122,7 @@ h1 {
 
 .summary-row p {
   margin: 0;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .summary-header {
@@ -141,15 +133,14 @@ h1 {
 }
 
 .summary-header span {
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.72);
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
 
 .summary-header strong {
-  color: var(--ink);
+  color: #fff;
   font-size: 2rem;
-  font-family: Georgia, serif;
 }
 
 .checkout-button,
@@ -166,26 +157,23 @@ h1 {
   color: #111;
   text-decoration: none;
   font-weight: 700;
-  transition: background 0.2s;
-
-  &:hover { background: rgba(255, 255, 255, 0.9); }
 }
 
 .empty-state {
   text-align: center;
   padding: 3rem 1rem;
-  background: var(--crystal-1);
-  border: 1px solid var(--gossamer);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
 }
 
 .empty-state h2 {
-  color: var(--ink);
+  color: #fff;
   margin-bottom: 1rem;
 }
 
 .empty-state p {
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.72);
   margin-bottom: 1.5rem;
 }
 

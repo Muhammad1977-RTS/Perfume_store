@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-site-header',
@@ -12,8 +13,9 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./site-header.component.scss'],
 })
 export class SiteHeaderComponent {
-  readonly cartService = inject(CartService);
-  readonly authService = inject(AuthService);
+  readonly cartService  = inject(CartService);
+  readonly authService  = inject(AuthService);
+  readonly themeService = inject(ThemeService);
   private readonly router = inject(Router);
 
   logout() {

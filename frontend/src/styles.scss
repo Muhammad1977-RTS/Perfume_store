@@ -1,1 +1,122 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* Surfaces */
+  --velvet:       #050505;
+  --velvet-start: #070707;
+  --velvet-deep:  #121212;
+
+  /* Accent */
+  --gold:  #E8C96A;
+  --amber: #C4852A;
+
+  /* Overlays */
+  --crystal-1: rgba(255, 255, 255, 0.04);
+  --crystal-2: rgba(255, 255, 255, 0.06);
+  --crystal-3: rgba(255, 255, 255, 0.08);
+
+  /* Borders */
+  --gossamer:     rgba(255, 255, 255, 0.08);
+  --gossamer-mid: rgba(255, 255, 255, 0.12);
+  --gossamer-hi:  rgba(255, 255, 255, 0.20);
+
+  /* Text */
+  --ink:       #ffffff;
+  --ink-soft:  rgba(255, 255, 255, 0.72);
+  --ink-faint: rgba(255, 255, 255, 0.45);
+
+  /* Semantic */
+  --success-bg: rgba(60, 206, 179, 0.15);
+  --success-fg: #b9ffea;
+  --warning-bg: rgba(232, 201, 106, 0.15);
+  --warning-fg: #E8C96A;
+  --info-bg:    rgba(96, 165, 250, 0.15);
+  --info-fg:    #93c5fd;
+  --danger-bg:  rgba(245, 66, 93, 0.14);
+  --danger-fg:  #ffb0c7;
+
+  /* Header / Footer */
+  --header-bg: rgba(0, 0, 0, 0.70);
+  --footer-bg: rgba(0, 0, 0, 0.70);
+
+  /* Typography */
+  --heading-font: Georgia, serif;
+  --h1-tracking:  -0.06em;
+
+  /* Hero */
+  --hero-start: rgba(14, 12, 10, 0.96);
+  --hero-end:   rgba(20, 18, 16, 0.92);
+
+  /* Cards */
+  --media-bg:     #111;
+  --card-bg:      linear-gradient(180deg, var(--hero-start) 0%, var(--hero-end) 100%);
+  --card-border:  rgba(255, 255, 255, 0.07);
+  --page-btn-bg:       rgba(255, 255, 255, 0.04);
+  --page-btn-hover-bg: rgba(255, 255, 255, 0.10);
+  --card-transition:   transform 0.25s ease, border-color 0.25s ease;
+  --card-hover-border: rgba(255, 255, 255, 0.16);
+  --card-hover-shadow: none;
+  --img-hover-scale:   1;
+  --card-btn-bg:       #d0d0d0;
+
+  /* Brand chips */
+  --chip-bw:        1px;
+  --chip-bc:        rgba(255, 255, 255, 0.12);
+  --chip-bg:        rgba(255, 255, 255, 0.04);
+  --chip-color:     rgba(255, 255, 255, 0.84);
+  --chip-fw:        400;
+  --chip-hover-bg:  rgba(255, 255, 255, 0.09);
+  --chip-active-bg: rgba(255, 255, 255, 0.14);
+  --chip-active-bc: #E8C96A;
+}
+
+[data-theme="light"] {
+  --velvet:       #ffffff;
+  --velvet-start: #ffffff;
+  --velvet-deep:  #f5f5f5;
+
+  --header-bg: rgba(14, 12, 10, 0.75);
+  --footer-bg: rgba(14, 12, 10, 0.75);
+  --heading-font: Georgia, serif;
+  --h1-tracking:  -0.04em;
+
+  --hero-start: rgba(14, 12, 10, 0.96);
+  --hero-end:   rgba(20, 18, 16, 0.92);
+
+  --media-bg:     #ffffff;
+  --card-bg:      linear-gradient(180deg, var(--hero-start) 0%, var(--hero-end) 100%);
+  --card-border:  rgba(255, 255, 255, 0.08);
+  --page-btn-bg:       linear-gradient(180deg, var(--hero-start) 0%, var(--hero-end) 100%);
+  --page-btn-hover-bg: linear-gradient(180deg, rgba(30, 26, 22, 0.96) 0%, rgba(36, 32, 28, 0.92) 100%);
+  --card-transition:   transform 0.3s ease, border-color 0.3s ease, box-shadow 0.4s ease;
+  --card-hover-border: rgba(196, 133, 42, 0.32);
+  --card-hover-shadow: 0 0 48px rgba(196, 133, 42, 0.14), 0 24px 64px rgba(0, 0, 0, 0.35);
+  --img-hover-scale:   1.04;
+  --card-btn-bg:       #ffffff;
+
+  --chip-bw:        2px;
+  --chip-bc:        #E8C96A;
+  --chip-bg:        rgba(232, 201, 106, 0.32);
+  --chip-color:     #E8C96A;
+  --chip-fw:        600;
+  --chip-hover-bg:  rgba(232, 201, 106, 0.44);
+  --chip-active-bg: rgba(232, 201, 106, 0.60);
+  --chip-active-bc: #E8C96A;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body,
+app-root { min-height: 100%; }
+
+body {
+  margin: 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--velvet);
+  color: var(--ink);
+}
+
+h1, h2 { font-family: var(--heading-font); }
+
+button, input, textarea, a { font: inherit; }
+
+a { color: inherit; }

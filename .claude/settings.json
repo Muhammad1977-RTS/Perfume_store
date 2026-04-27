@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m ' *)",
+      "Bash(node -e \"const j=require\\('./angular.json'\\); const s=j.projects[Object.keys\\(j.projects\\)[0]].architect.build.options.styles; console.log\\(JSON.stringify\\(s,null,2\\)\\)\")"
+    ]
+  }
+}
